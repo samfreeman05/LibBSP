@@ -296,6 +296,7 @@ namespace LibBSP {
 		public static byte[] GetBytes(this Plane p, MapType type, int version = 0) {
 			byte[] bytes = new byte[GetStructLength(type, version)];
 			switch (type) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire:
 				case MapType.SiN:
@@ -400,6 +401,7 @@ namespace LibBSP {
 				case MapType.MOHAA:
 				case MapType.STEF2:
 				case MapType.STEF2Demo:
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Quake2:
 				case MapType.SiN:
@@ -445,6 +447,7 @@ namespace LibBSP {
 		public static int GetStructLength(MapType type, int version) {
 			int structLength = 0;
 			switch (type) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire:
 				case MapType.SiN:

@@ -97,6 +97,7 @@ namespace LibBSP {
 		public int Child1Index {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToInt16(Data, 4);
 					}
@@ -135,6 +136,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[4] = bytes[0];
 						Data[5] = bytes[1];
@@ -191,6 +193,7 @@ namespace LibBSP {
 		public int Child2Index {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToInt16(Data, 6);
 					}
@@ -229,6 +232,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[6] = bytes[0];
 						Data[7] = bytes[1];
@@ -272,6 +276,7 @@ namespace LibBSP {
 		public Vector3 Minimums {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return new Vector3(BitConverter.ToInt16(Data, 8), BitConverter.ToInt16(Data, 10), BitConverter.ToInt16(Data, 12));
 					}
@@ -314,6 +319,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						BitConverter.GetBytes((short)value.X()).CopyTo(Data, 8);
 						BitConverter.GetBytes((short)value.Y()).CopyTo(Data, 10);
@@ -371,6 +377,7 @@ namespace LibBSP {
 		public Vector3 Maximums {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return new Vector3(BitConverter.ToInt16(Data, 14), BitConverter.ToInt16(Data, 16), BitConverter.ToInt16(Data, 18));
 					}
@@ -413,6 +420,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						BitConverter.GetBytes((short)value.X()).CopyTo(Data, 14);
 						BitConverter.GetBytes((short)value.Y()).CopyTo(Data, 16);
@@ -482,6 +490,7 @@ namespace LibBSP {
 		public int FirstFaceIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt16(Data, 20);
 					}
@@ -513,6 +522,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[20] = bytes[0];
 						Data[21] = bytes[1];
@@ -552,6 +562,7 @@ namespace LibBSP {
 		public int NumFaceIndices {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt16(Data, 22);
 					}
@@ -582,6 +593,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[22] = bytes[0];
 						Data[23] = bytes[1];
@@ -740,6 +752,7 @@ namespace LibBSP {
 		/// <exception cref="ArgumentException">This struct is not valid or is not implemented for the given <paramref name="mapType"/> and <paramref name="lumpVersion"/>.</exception>
 		public static int GetStructLength(MapType mapType, int lumpVersion = 0) {
 			switch (mapType) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake: {
 					return 24;
 				}
@@ -799,6 +812,7 @@ namespace LibBSP {
 				case MapType.SoF: {
 					return 4;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Vindictus:
 				case MapType.TacticalInterventionEncrypted:

@@ -50,6 +50,7 @@ namespace LibBSP {
 			}
 
 			switch (version) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire: {
 					return GetLumpInfoAtOffset(4 + (8 * index), version);
@@ -534,9 +535,13 @@ namespace LibBSP {
 					}
 					// Various numbers not representing a string
 					// Formats: HL1, Quake, Nightfire, or perhaps Tactical Intervention's encrypted format
-					case 29:
-					case 30: {
+					case 29:{
 						current = MapType.Quake;
+						break;
+					}
+					case 30:
+					{
+						current = MapType.TYPE_GOLDSRC;
 						break;
 					}
 					case 42: {

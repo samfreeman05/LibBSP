@@ -69,6 +69,7 @@ namespace LibBSP {
 		public string Name {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return Data.ToNullTerminatedString(0, 16);
 					}
@@ -115,6 +116,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = Encoding.ASCII.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						for (int i = 0; i < 16; ++i) {
 							Data[i] = 0;
@@ -344,6 +346,7 @@ namespace LibBSP {
 		public uint Width {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 16);
 					}
@@ -355,6 +358,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 16);
 						break;
@@ -369,6 +373,7 @@ namespace LibBSP {
 		public uint Height {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 20);
 					}
@@ -380,6 +385,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 20);
 						break;
@@ -394,6 +400,7 @@ namespace LibBSP {
 		public uint OffsetFull {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 24);
 					}
@@ -405,6 +412,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 24);
 						break;
@@ -419,6 +427,7 @@ namespace LibBSP {
 		public uint OffsetHalf {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 28);
 					}
@@ -430,6 +439,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 28);
 						break;
@@ -444,6 +454,7 @@ namespace LibBSP {
 		public uint OffsetQuarter {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 32);
 					}
@@ -455,6 +466,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 32);
 						break;
@@ -469,6 +481,7 @@ namespace LibBSP {
 		public uint OffsetEighth {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return BitConverter.ToUInt32(Data, 36);
 					}
@@ -480,6 +493,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						bytes.CopyTo(Data, 36);
 						break;
@@ -584,6 +598,23 @@ namespace LibBSP {
 			}
 		}
 
+		public byte[] BinaryTextureData;
+
+		public byte[] Palette;
+
+		public Texture(byte[] data, ILump parent, byte[] binaryTexData, byte[] palette)
+		{
+			if (data == null)
+			{
+				throw new ArgumentNullException();
+			}
+
+			Data = data;
+			Parent = parent;
+			BinaryTextureData = binaryTexData;
+			Palette = palette;
+		}
+
 		/// <summary>
 		/// Creates a new <see cref="Texture"/> object from a <c>byte</c> array.
 		/// </summary>
@@ -597,6 +628,8 @@ namespace LibBSP {
 
 			Data = data;
 			Parent = parent;
+			BinaryTextureData = null;
+			Palette = null;
 		}
 
 		/// <summary>
@@ -613,6 +646,8 @@ namespace LibBSP {
 		/// </param>
 		public Texture(Texture source, ILump parent) {
 			Parent = parent;
+			BinaryTextureData = null;
+			Palette = null;
 
 			if (parent != null && parent.Bsp != null) {
 				if (source.Parent != null && source.Parent.Bsp != null && source.Parent.Bsp.version == parent.Bsp.version && source.LumpVersion == parent.LumpInfo.version) {
@@ -643,7 +678,7 @@ namespace LibBSP {
 			OffsetEighth = source.OffsetEighth;
 			Value = source.Value;
 			Next = source.Next;
-			Subdivisions = source.Subdivisions;
+			Subdivisions = source.Subdivisions;			
 		}
 
 		/// <summary>
@@ -692,6 +727,7 @@ namespace LibBSP {
 				case MapType.Quake3: {
 					return 1;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire: {
 					return 2;

@@ -60,6 +60,7 @@ namespace LibBSP {
 		public int Contents {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SoF:
@@ -88,6 +89,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SoF:
@@ -130,6 +132,7 @@ namespace LibBSP {
 					case MapType.CoD4: {
 						return BitConverter.ToInt32(Data, 0);
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Nightfire:
 					case MapType.Vindictus: {
@@ -172,6 +175,7 @@ namespace LibBSP {
 						bytes.CopyTo(Data, 0);
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Nightfire:
 					case MapType.Vindictus: {
@@ -347,6 +351,7 @@ namespace LibBSP {
 					case MapType.STEF2: {
 						return new Vector3(BitConverter.ToInt32(Data, 8), BitConverter.ToInt32(Data, 12), BitConverter.ToInt32(Data, 16));
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -391,6 +396,7 @@ namespace LibBSP {
 						BitConverter.GetBytes((int)value.Z()).CopyTo(Data, 16);
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -447,6 +453,7 @@ namespace LibBSP {
 					case MapType.STEF2: {
 						return new Vector3(BitConverter.ToInt32(Data, 20), BitConverter.ToInt32(Data, 24), BitConverter.ToInt32(Data, 28));
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -491,6 +498,7 @@ namespace LibBSP {
 						BitConverter.GetBytes((short)value.Z()).CopyTo(Data, 28);
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -765,6 +773,7 @@ namespace LibBSP {
 		[Index("markSurfaces")] public int FirstMarkFaceIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SiN:
@@ -805,6 +814,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SiN:
@@ -853,6 +863,7 @@ namespace LibBSP {
 		[Count("markSurfaces")] public int NumMarkFaceIndices {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SiN:
@@ -893,6 +904,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.SiN:
@@ -941,6 +953,7 @@ namespace LibBSP {
 		public byte WaterSoundLevel {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return Data[24];
 					}
@@ -951,6 +964,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[24] = value;
 						break;
@@ -965,6 +979,7 @@ namespace LibBSP {
 		public byte SkySoundLevel {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return Data[25];
 					}
@@ -975,6 +990,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[25] = value;
 						break;
@@ -989,6 +1005,7 @@ namespace LibBSP {
 		public byte SlimeSoundLevel {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return Data[26];
 					}
@@ -999,6 +1016,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[26] = value;
 						break;
@@ -1013,6 +1031,7 @@ namespace LibBSP {
 		public byte LavaSoundLevel {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						return Data[27];
 					}
@@ -1023,6 +1042,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake: {
 						Data[27] = value;
 						break;
@@ -1251,6 +1271,7 @@ namespace LibBSP {
 				case MapType.CoD4: {
 					return 24;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Quake2:
 				case MapType.SiN: {
@@ -1316,6 +1337,7 @@ namespace LibBSP {
 				}
 				case MapType.STEF2:
 				case MapType.STEF2Demo:
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Vindictus:
 				case MapType.TacticalInterventionEncrypted:

@@ -70,6 +70,7 @@ namespace LibBSP {
 		public int FirstVertexIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.SiN:
 					case MapType.Daikatana:
@@ -99,6 +100,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.SiN:
 					case MapType.Daikatana:
@@ -142,6 +144,7 @@ namespace LibBSP {
 		public int SecondVertexIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.SiN:
 					case MapType.Daikatana:
@@ -171,6 +174,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.SiN:
 					case MapType.Daikatana:
@@ -274,6 +278,7 @@ namespace LibBSP {
 		/// <exception cref="ArgumentException">This struct is not valid or is not implemented for the given <paramref name="mapType"/> and <paramref name="lumpVersion"/>.</exception>
 		public static int GetStructLength(MapType mapType, int lumpVersion = 0) {
 			switch (mapType) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.SiN:
 				case MapType.Daikatana:
@@ -314,6 +319,7 @@ namespace LibBSP {
 				case MapType.SoF: {
 					return 11;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Vindictus:
 				case MapType.TacticalInterventionEncrypted:

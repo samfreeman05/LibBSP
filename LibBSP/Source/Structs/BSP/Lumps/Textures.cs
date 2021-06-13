@@ -1,7 +1,19 @@
+#if UNITY_3_4 || UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_5 || UNITY_5_3_OR_NEWER
+#define UNITY
+#if !UNITY_5_6_OR_NEWER
+#define OLDUNITY
+#endif
+#endif
+
+using RedDarwin.Assets.Scripts.Utility;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
+#if UNITY
+	using Color = UnityEngine.Color;
+#else
+using Color = System.Drawing.Color;
+#endif
 namespace LibBSP {
 
 	/// <summary>
@@ -9,6 +21,8 @@ namespace LibBSP {
 	/// especially when handling them as a group.
 	/// </summary>
 	public class Textures : Lump<Texture> {
+		public List<Color> Colors { get; private set; }
+
 
 		/// <summary>
 		/// Creates an empty <see cref="Textures"/> object.
@@ -100,6 +114,38 @@ namespace LibBSP {
 					}
 					return;
 				}
+				case MapType.TYPE_GOLDSRC:
+				{
+						//string wadPath = @"E:\Steam\steamapps\common\Half-Life\valve\halflife.wad";
+						//var wad = Wad3Reader.Read(wadPath);
+
+						/*
+						 * Each mipmap is followed by a 16-bit integer (always = 256) then 256 RGB values (texture palette).
+						 */
+						int numElements = BitConverter.ToInt32(data, 0);
+						structLength = 40;
+						for (int i = 0; i < numElements; ++i)
+						{
+							try
+							{
+								byte[] myBytes = new byte[structLength];
+								int startIndex = BitConverter.ToInt32(data, (i + 1) * 4);
+								Array.Copy(data, startIndex, myBytes, 0, structLength);
+								string name = myBytes.ToNullTerminatedString(0, 16);
+
+								Texture tex = new Texture();
+								var wadMip = WadUtility.GetTextureFromWads(bsp.wads, name);
+								if (wadMip.HasValue)
+								{
+									tex = new Texture(myBytes, this, wadMip.Value.binaryTextureData[0], wadMip.Value.colorTable);
+								}
+
+								Add(tex);
+							}
+							catch { }
+						}
+						return;
+					}
 				case MapType.Quake: {
 					int numElements = BitConverter.ToInt32(data, 0);
 					structLength = 40;

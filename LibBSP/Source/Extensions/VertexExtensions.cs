@@ -128,6 +128,7 @@ namespace LibBSP {
 					result.normal = Vector3Extensions.ToVector3(data, 36);
 					goto case MapType.Quake;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire:
 				case MapType.SiN:
@@ -195,6 +196,7 @@ namespace LibBSP {
 				case MapType.SoF: {
 					return 2;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Vindictus:
 				case MapType.TacticalInterventionEncrypted:
@@ -262,6 +264,7 @@ namespace LibBSP {
 		public static int GetStructLength(MapType type, int version) {
 			int structLength = 0;
 			switch (type) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire:
 				case MapType.SiN:
@@ -330,6 +333,7 @@ namespace LibBSP {
 			byte[] bytes = new byte[GetStructLength(type, version)];
 
 			switch (type) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Nightfire:
 				case MapType.SiN:

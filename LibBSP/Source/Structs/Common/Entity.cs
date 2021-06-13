@@ -650,6 +650,7 @@ namespace LibBSP {
 			switch (type) {
 				case MapType.Raven:
 				case MapType.Quake3:
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Quake2:
 				case MapType.SiN:

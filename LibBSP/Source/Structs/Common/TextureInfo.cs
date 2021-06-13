@@ -124,6 +124,7 @@ namespace LibBSP {
 					case MapType.DMoMaM: {
 						return BitConverter.ToInt32(Data, 88);
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Undefined: {
 						return BitConverter.ToInt32(Data, 36);
@@ -154,6 +155,7 @@ namespace LibBSP {
 						bytes.CopyTo(Data, 88);
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Undefined: {
 						bytes.CopyTo(Data, 36);
@@ -191,6 +193,7 @@ namespace LibBSP {
 					case MapType.DMoMaM: {
 						return BitConverter.ToInt32(Data, 92);
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Undefined: {
 						return BitConverter.ToInt32(Data, 32);
@@ -221,6 +224,7 @@ namespace LibBSP {
 						bytes.CopyTo(Data, 92);
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Undefined: {
 						bytes.CopyTo(Data, 32);
@@ -311,6 +315,7 @@ namespace LibBSP {
 				case MapType.Nightfire: {
 					return 32;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Undefined: {
 					return 40;
@@ -344,6 +349,7 @@ namespace LibBSP {
 		/// <returns>Index for this lump, or -1 if the format doesn't have this lump.</returns>
 		public static int GetIndexForLump(MapType type) {
 			switch (type) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Vindictus:
 				case MapType.TacticalInterventionEncrypted:

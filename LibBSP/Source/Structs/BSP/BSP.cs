@@ -9,6 +9,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
+using RedDarwin.WAD;
 
 namespace LibBSP {
 #if UNITY
@@ -28,7 +29,7 @@ namespace LibBSP {
 	public enum MapType : int {
 		Undefined = 0,
 		Quake = 29,
-		// TYPE_GOLDSRC = 30, // Uses mostly the same structures as Quake
+		TYPE_GOLDSRC = 30, // Uses mostly the same structures as Quake
 		Nightfire = 42,
 		Vindictus = 346131372,
 		STEF2 = 556942937,
@@ -127,6 +128,9 @@ namespace LibBSP {
 		/// The <see cref="BSPReader"/> object in use by this <see cref="BSP"/> class.
 		/// </summary>
 		public BSPReader reader { get; private set; }
+
+		public Wad3[] wads { get; set; }
+		public UnityEngine.Material DefaultBrushMaterial { get; set; }
 
 		/// <summary>
 		/// The version of this BSP. Do not change this unless you want to force reading a BSP as a certain format.
@@ -742,6 +746,7 @@ namespace LibBSP {
 		/// <returns>The number of lumps used by a BSP of version <paramref name="version"/>.</returns>
 		public static int GetNumLumps(MapType version) {
 			switch (version) {
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake: {
 					return 15;
 				}

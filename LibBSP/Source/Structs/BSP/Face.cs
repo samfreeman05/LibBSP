@@ -92,6 +92,7 @@ namespace LibBSP {
 		public int PlaneIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -124,6 +125,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -163,6 +165,7 @@ namespace LibBSP {
 		public bool PlaneSide {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -195,6 +198,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -302,6 +306,7 @@ namespace LibBSP {
 		[Index("edges")] public int FirstEdgeIndexIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -333,6 +338,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -370,6 +376,7 @@ namespace LibBSP {
 		[Count("edges")] public int NumEdgeIndices {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -401,6 +408,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana:
@@ -678,6 +686,7 @@ namespace LibBSP {
 		public int TextureInfoIndex {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Source18:
 					case MapType.Source19:
@@ -708,6 +717,7 @@ namespace LibBSP {
 			set {
 				byte[] bytes = BitConverter.GetBytes(value);
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Source18:
 					case MapType.Source19:
@@ -1200,6 +1210,7 @@ namespace LibBSP {
 		public byte[] LightmapStyles {
 			get {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana: {
@@ -1257,6 +1268,7 @@ namespace LibBSP {
 			}
 			set {
 				switch (MapType) {
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana: {
@@ -1366,6 +1378,7 @@ namespace LibBSP {
 					case MapType.CoD2: {
 						return BitConverter.ToInt16(Data, 2);
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana: {
@@ -1422,6 +1435,7 @@ namespace LibBSP {
 						Data[3] = bytes[1];
 						break;
 					}
+					case MapType.TYPE_GOLDSRC:
 					case MapType.Quake:
 					case MapType.Quake2:
 					case MapType.Daikatana: {
@@ -2354,6 +2368,7 @@ namespace LibBSP {
 				case MapType.CoD2: {
 					return 16;
 				}
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake:
 				case MapType.Quake2:
 				case MapType.Daikatana: {
@@ -2448,6 +2463,7 @@ namespace LibBSP {
 				case MapType.Source27:
 				case MapType.L4D2:
 				case MapType.DMoMaM:
+				case MapType.TYPE_GOLDSRC:
 				case MapType.Quake: {
 					return 7;
 				}
